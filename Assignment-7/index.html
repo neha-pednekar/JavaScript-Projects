@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html ng-app="ngApp">
+
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src = "CartController.js"></script>
+
+    <style type="text/css">
+      .container{
+        background: grey;
+      }
+      .panel
+      {
+        margin-top: 40px;
+        background: linear-gradient(yellow, lightgreen, lightblue);
+      }
+      .panel-heading
+      {
+        text-align: center;
+        font-size: 2em;
+        font-weight: bold;
+      }
+      .panel-body{
+
+      }
+    </style>
+  </head>
+
+
+  <body ng-controller="CartController" class="container">
+    <div class="panel panel-default">
+      <div class="panel-heading">Shopping Cart Application</div>
+      <div class="panel-body">
+        <form ng-submit="add()" class="form-horizontal" name="myForm">
+         <table class="table" ng-show="products.length > 0">
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Price X Quantity</th>
+        </tr>
+        
+      </thead>
+      <tbody>
+        <tr ng-repeat= "x in products">
+            <td>{{x.name}}</td>
+            <td>{{x.price | currency}} per unit</td>
+            <td><input type="number" name="quantity" id="quantity" min="0" max="50" ng:required ng:model="x.quantity"></td>
+            <td>{{x.quantity * x.price | currency}}</td>
+            <!-- <td>
+                [<a href ng:click="removeItem($index)">X</a>]
+            </td> -->
+        </tr>
+       
+        <tr>
+            <td>Have a Promo Code?&nbsp;<input type="text" name="promo" id="promo" ng-model="promo">&nbsp;</td>
+            <td></td>
+            <td></td>
+            <td> <button ng-click="addToCart()" class="btn btn-default">Add to Cart</button></td>
+        </tr>
+        <tr>
+            <td> <button ng-click="applyDiscount(promo)" class="btn btn-default">Apply Voucher</button></td>
+            <td></td>
+            <td>Tax:</td>
+            <td>{{taxApplied | currency}}</td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td></td>
+            <td>Discount Applied:</td>
+            <td>{{ discount | currency }}</td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td></td>
+            <td>Total:</td>
+            <td>{{ totalAmount  | currency }}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+
+      </tbody>
+    </table>
+
+
+          <h3>Shipping Address</h3> Name:&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="text" name="personname" ng-model="sa.name" ng-change="sameAddress && update()" required 
+          ng-pattern = "/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/" />
+          <span class="error" ng-show="myForm.personname.$error.required">Name is Required!</span>
+          <span class = "error" ng-show="myForm.personname.$error.pattern">Not a valid name!</span>
+          <br />
+          <br /> Street:&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="text" name="street" ng-model="sa.street" ng-change="sameAddress && update()" required ng-pattern="\/\d{1,}(\s{1}\w{1,})(\s{1}?\w{1,})+)/g" />
+          <span class="error" ng-show="myForm.street.$error.required">Street is Required!</span>
+          <span class = "error" ng-show="myForm.street.$error.pattern">Not a valid street address</span>
+          <br />
+          <br /> City:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="text" name= "city" ng-model="sa.city" ng-change="sameAddress && update()" required ng-pattern="/^[a-zA-Z]+(?:[\\s-][a-zA-Z]+)*$/" />
+          <span class="error" ng-show="myForm.city.$error.required">City is Required!</span>
+          <span class = "error" ng-show="myForm.city.$error.pattern">Not a valid city name!</span>
+          <br />
+          <br /> State:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="text" name = "state" ng-model="sa.state" ng-change="sameAddress && update()" required ng-pattern = "/^[a-zA-Z]+(?:[\\s-][a-zA-Z]+)*$/" />
+          <span class="error" ng-show="myForm.state.$error.required">State is Required!</span>
+          <span class = "error" ng-show="myForm.state.$error.pattern">Not a valid state name!</span>
+          <br />
+          <br /> Pin:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="text" name="pincode" ng-model="sa.pin" ng-change="sameAddress && update()" required ng-pattern ="/^\d{5}(?:[-\s]\d{4})?$/" />
+          <span class="error" ng-show="myForm.pincode.$error.required">Zipcode is Required!</span>
+          <span class = "error" ng-show="myForm.pincode.$error.pattern">Not a valid zipcode!</span>
+          <br />
+          <br />
+          <br />
+          <br />
+    
+          <h3>Billing Address</h3> Name:&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="text" name="personnameba" ng-model="ba.name" ng-disabled="sameAddress" required 
+          ng-pattern = "/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/" />
+          <span class="error" ng-show="myForm.personnameba.$error.required">Name is Required!</span>
+          <span class = "error" ng-show="myForm.personnameba.$error.pattern">Not a valid name!</span>
+          <br />
+          <br /> Street:&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="text" name="streetba" ng-model="ba.street" ng-disabled="sameAddress" required ng-pattern="\/\d{1,}(\s{1}\w{1,})(\s{1}?\w{1,})+)/g" />
+           <span class="error" ng-show="myForm.streetba.$error.required">Street is Required!</span>
+          <span class = "error" ng-show="myForm.streetba.$error.pattern">Not a valid street address</span>
+          <br />
+          <br /> City:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="text" name="cityba"  ng-model="ba.city" ng-disabled="sameAddress" required ng-pattern="/^[a-zA-Z]+(?:[\\s-][a-zA-Z]+)*$/" />
+           <span class="error" ng-show="myForm.cityba.$error.required">City is Required!</span>
+          <span class = "error" ng-show="myForm.cityba.$error.pattern">Not a valid city name!</span>
+          <br />
+          <br /> State:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="text" name="stateba"  ng-model="ba.state" ng-disabled="sameAddress" required ng-pattern = "/^[a-zA-Z]+(?:[\\s-][a-zA-Z]+)*$/" />
+          <span class="error" ng-show="myForm.stateba.$error.required">State is Required!</span>
+          <span class = "error" ng-show="myForm.stateba.$error.pattern">Not a valid state name!</span>
+          <br />
+          <br /> Pin:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="text" name="pincodeba"  ng-model="ba.pin" ng-disabled="sameAddress" required ng-pattern ="/^\d{5}(?:[-\s]\d{4})?$/" />
+          <span class="error" ng-show="myForm.pincodeba.$error.required">Zipcode is Required!</span>
+          <span class = "error" ng-show="myForm.pincodeba.$error.pattern">Not a valid zipcode!</span>
+          <br />
+          <br />
+          <input type="checkbox" ng-model="sameAddress" ng-change="sameAddress && update()" />&nbsp;&nbsp;Billing Address is same as Shipping Address
+          <br />
+
+          <div>
+               <button ng-click="placeOrder()" class="btn btn-default pull-right">Place Order</button>
+          </div>
+
+        </form>
+
+       
+
+         
+      </div>
+    </div>
+   
+   
+  </body>
+</html>

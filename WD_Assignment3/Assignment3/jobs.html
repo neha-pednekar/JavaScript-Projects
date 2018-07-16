@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JavaJam Coffee :: Jobs</title>
+<link rel="stylesheet" href="javajam.css">
+<script type="text/javascript">
+            function validate_form() {
+            if (document.emp.first_name.value == "") {
+                alert("Please fill in the 'Your First Name' box.");
+                return false;
+            }
+			
+			if (document.emp.last_name.value == "") {
+                alert("Please fill in the 'Your Last Name' box.");
+                return false;
+            }
+			
+            if (document.emp.num.value == "") {
+                alert("Enter Employee Number");
+                return false;
+            }
+            alert("sucessfully Submitted");
+ 
+ 
+ 
+            if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).test(document.emp.email_id.value)) {
+                alert("You have entered an invalid email address!")
+                return (false)
+            }
+        }
+ 
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode;
+            if (charCode != 46 && charCode > 31 &&
+                (charCode < 48 || charCode > 57)) {
+                alert("Enter Number");
+                return false;
+            }
+            return true;
+        }
+ 
+    </script>
+</head>
+<body>
+<div class="main">
+            <ul class="mainnav">
+                <li class= "hassubs"><a href="index.html">Home</a>
+                    <ul class="dropdown">
+                        <li class="subs"><a href="#">Hot Brews</a></li>
+                        <li class="subs"><a href="#">Cold Brews</a></li>
+                    </ul>
+                </li>
+                <li><a href="menu.html">Menu</a></li>
+				<li><a href="music.html">Music</a></li>
+				<li><a href="jobs.html">Jobs</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            <br style="clear: both;">
+        </div>
+</main>
+<h4>OPEN POSITIONS:</h4>
+<p>New Cashier Position
+Cafe JavaJam Coffee offers an array of exciting careers in the restaurant field. <br \>
+We are always looking for exceptional people to join our m, so if you work well in a <br \>
+fast-paced environment, send us your info!We're located near the Red Line, Green Line, <br \>
+Orange Line, Silver Line and several bus routes.<br \>
+Please send us your resume, references, work experience, availability.<br \>
+<br \>
+Send resume to: <a href="info@cafejavajamcoffee.com">
+  info@javamjamcoffee.com</a> 
+  or Fill in the below given form
+  <form name="emp" action="" onsubmit="return validate_form();" method="post">
+        <table align="center" width=40% width="100%" cellspacing="2" cellpadding="2" border="5">
+            <tr>
+                <td colspan="2" align="center"><b>Job Application Form</b></td>
+             </tr>
+            <tr>
+                <td align="left" valign="top" width="41%">First Name<span style="color:red">*</span></td>
+                <td width="57%"><input type="text" value="" name="first_name" size="24"></td>
+             </tr>
+			<tr>
+			<td align="left" valign="top" width="41%">Last Name<span style="color:red">*</span></td>
+                <td width="57%"><input type="text" value="" name="last_name" size="24"></td>
+			</tr>
+			<tr>
+			<td align="left" valign="top" width="41%">Gender<span style="color:red">*</span></td>
+			<td>
+			<input type="radio" name="gender" value="male"> Male<br>
+            <input type="radio" name="gender" value="female"> Female<br>
+		    </td>	
+			</tr>
+            <tr>
+                <td align="left" valign="top" width="41%">Address</td>
+ 
+                <td width="57%"><textarea rows="4" maxlen="200" name="S2" cols="20"></textarea></td>
+            </tr> 
+			<tr>
+             <td align="left" valign="top" width="41%">Contact Number</td>
+            <td width="57%">
+                <input type="text" value="" onkeypress="return isNumberKey(event)" name="txtFName1" size="24"></td>
+            </tr>
+
+<tr>
+<td align="left" valign="top" width="41%">Preferred Location</td>
+<td width="57%"><select name="mydropdown">
+<option value="Default"></option>
+<option value="Boston">Boston</option>
+<option value="Chicago">Chicago</option>
+<option value="New York">New York</option>
+<option value="New Jersey">New Jersey</option>
+<option value="California">California</option>
+ <option value="Washington">Washington</option>
+</select></td>
+</tr>
+ 
+<tr>
+<td align="left" valign="top" width="41%">Preferred Position</td>
+<td width="57%">
+<select name="mydropdown">
+<option value="Default"></option>
+<option value="Systems Engineer">Cashier</option>
+<option value="Senior Systems Engineer">Cafe Manager</option>
+<option value="Technology Analyst">Cafe Supervisor</option>
+<option value="Technology Lead">Technical Assistant</option>
+<option value="Project Manager">Staff</option> 
+</select></td>
+ 
+ 
+            </tr>
+            <tr>
+                <td align="left" valign="top" width="41%">Email<span style="color:red">*</span></td>
+                <td width="57%">
+                    <input type="text" value="" name="email_id" size="24"></td>
+            </tr>
+ 
+            <tr>
+                <td colspan="2">
+                    <p align="center">
+                        <input type="submit" value="  Submit" name="B4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="reset" value="  Reset All   " name="B5"></td>
+            </tr>
+ 
+        </table>
+    </form>
+  
+</p>
+</main>
+<footer>
+          <p><small><i>Copyright &copy;2017 Cafe Costa Coffee Day. All Rights Reserved<br \>
+		For further details please contact: <a href="mailto:xyz@example.com">
+  xyz@example.com</a></small></i><br \>
+   <a href="Terms and Conditions.html">Terms and Conditions</a>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JavaJam Coffee House Menu</title>
+<link rel="stylesheet" href="javajam.css">
+<style>
+table { margin: auto; 
+        border: 5px solid brown; 
+		width: 600px; 
+		border-spacing: 0;
+}
+td, th { padding: 5px; 
+         font-family: Arial, sans-serif;
+         border-style: none; 
+}
+caption { font-family: Verdana, sans-serif; 
+          font-weight: bold;
+		  font-size: 1.2em; 
+		  padding-bottom: 5px; 
+}
+tr:nth-of-type(odd) { background-color:#eaeaea; }
+
+tr:first-of-type { background-color: #000066;
+                   color: #eaeaea; }
+
+</style>
+</head>
+<body>
+<div id="wrapper">
+<header>
+<h1>JavaJam Coffee House</h1>
+</header>
+<div class="main">
+            <ul class="mainnav">
+                <li class= "hassubs"><a href="index.html">Home</a>
+                    <ul class="dropdown">
+                        <li class="subs"><a href="#">Hot Brews</a></li>
+                        <li class="subs"><a href="#">Cold Brews</a></li>
+                    </ul>
+                </li>
+                <li><a href="menu.html">Menu</a></li>
+				<li><a href="music.html">Music</a></li>
+				<li><a href="jobs.html">Jobs</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            <br style="clear: both;">
+        </div>
+
+<main>
+<h2>
+Coffee at JavaJam
+</h2>
+<table border="1"> 
+ <caption>Specialty Coffee Menu</caption>
+   <tr>
+     <th>Specialty Coffee</th>
+	 <th>Description</th>
+     <th>Price</th>
+  </tr>
+  <tr>
+     <td>Lite Latte</td>
+     <td>Indulge in a shot of espresso with steamed, skim milk. </td>
+	 <td>$3.50</td>
+  </tr>
+  <tr>
+     <td>Mocha Latte</td>
+     <td>Choose dark or milk chocolate with steamed milk.</td>
+	 <td>$4.00</td>
+   </tr>
+    <tr>
+     <td>MCP Latte</td>
+     <td>A luscious mocha latte with caramel and pecan syrup. </td>
+	 <td>$4.50</td>
+  </tr>
+    <tr>
+     <td>Dark Latte</td>
+     <td>A luscious mocha latte with caramel and pecan syrup. </td>
+	 <td>$5.50</td>
+  </tr>
+    <tr>
+     <td>Hot Latte</td>
+     <td>A luscious mocha latte with caramel and pecan syrup. </td>
+	 <td>$6.50</td>
+  </tr>
+</table>
+
+</main>
+<footer>
+        <p>Copyright &copy;2017 JavaJam Coffee House. All Rights Reserved<br \>
+		For further details please contact: <a href="mailto:xyz@example.com">
+  xyz@example.com</a></p>
+
+</footer>
+</div>
+
+</body>
+</html>

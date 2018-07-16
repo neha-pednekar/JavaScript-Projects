@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <title>Feedback</title>
+  <style>
+    label {	float: left;
+			width: 150px;}
+	#firstName{float: left;}
+    #lastName{float: left;}
+	#emailId{float: left;}
+	#phoneNumber{float: left;}
+	#zipcode{float: left;}
+
+      #container{
+          width: 700px;
+          margin: auto;
+          background-color: beige;
+      } 
+      main{
+          padding: 50px;
+      }
+  </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+  	$(document).ready(function () {
+        
+        var errorPresent;
+        $('#firstName').blur(function () {
+            var nameregex = /^[a-zA-Z ]+$/
+ 			var emailregex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+ 			var zipcoderegex = /^\d{5}(?:[-\s]\d{4})?$/;
+
+
+            var firstName = $("#firstName").val();
+            if (!nameregex.test(firstName)) {
+                $("#errorFname").css("display", "block");
+                $("#firstName").css("border", "2px solid red")
+                $("#firstName").value = "";
+                errorPresent = true;
+             
+            } else {
+ 				$("#errorFname").css("display", "none");
+                $("#firstName").css("border", "");
+                errorPresent = false;
+
+            } 
+        });
+
+
+        $('#lastName').blur(function () {
+            var nameregex = /^[a-zA-Z ]+$/
+ 			var emailregex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+ 			var zipcoderegex = /^\d{5}(?:[-\s]\d{4})?$/;
+
+
+            var lastName = $("#lastName").val();
+            if (!nameregex.test(lastName)) {
+                $("#errorLname").css("display", "block");
+                $("#lastName").css("border", "2px solid red")
+                $("#lastName").value = "";
+                errorPresent = true;
+             
+            } else {
+ 				$("#errorLname").css("display", "none");
+                $("#lastName").css("border", "");
+                errorPresent = false;
+
+            } 
+        });
+
+
+        $('#emailId').blur(function () {
+            var nameregex = /^[a-zA-Z ]+$/
+ 			var emailregex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+ 			var zipcoderegex = /^\d{5}(?:[-\s]\d{4})?$/;
+
+
+            var emailId = $("#emailId").val();
+            if (!emailregex.test(emailId)) {
+                $("#errorEmail").css("display", "block");
+                $("#emailId").css("border", "2px solid red")
+                $("#emailId").value = "";
+                errorPresent = true;
+             
+            } else {
+ 				$("#errorEmail").css("display", "none");
+                $("#emailId").css("border", "");
+                errorPresent = false;
+
+            } 
+        });
+
+
+        $('#zipcode').blur(function () {
+            var nameregex = /^[a-zA-Z ]+$/
+ 			var emailregex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+ 			var zipcoderegex = /^\d{5}(?:[-\s]\d{4})?$/;
+
+
+            var zipcode = $("#zipcode").val();
+            if (!zipcoderegex.test(zipcode)) {
+                $("#errorZipcode").css("display", "block");
+                $("#zipcode").css("border", "2px solid red")
+                $("#zipcode").value = "";
+                errorPresent = true;
+             
+            } else {
+ 				$("#errorZipcode").css("display", "none");
+                $("#zipcode").css("border", "");
+                errorPresent = false;
+
+            } 
+        });
+
+        $('#comments').keyup(function () {
+		  var max = 200;
+		  var len = $("#comments").val().length;
+		  if (len >= max) {
+		    $("#charNum").text("You have reached the maximum limit");
+		    $("#charNum").css("color", "red");
+		    errorPresent = true;
+		  } else {
+		    var char = max - len;
+		    $("#charNum").text(char + ' characters left');
+		    $("#charNum").css("color", "black");
+		    errorPresent = false;
+		  }
+		});
+
+
+         $('#phoneNumber').blur(function () {
+ 			var phoneNumberRegex = /^\d{3}-\d{3}-\d{4}$/
+
+            var phoneNumber = $("#phoneNumber").val();
+            if (!phoneNumberRegex.test(phoneNumber)) {
+                $("#errorphone").css("display", "block");
+                $("#phoneNumber").css("border", "2px solid red")
+                $("#phoneNumber").value = "";
+                errorPresent = true;
+             
+            } else {
+ 				$("#errorphone").css("display", "none");
+                $("#phoneNumber").css("border", "");
+                errorPresent = false;
+
+            } 
+        });
+
+
+       
+
+        $(".title").hover(function(){
+		if (!$("input[name='title']:checked").val()) 
+		{
+		   $("#errorradio").css("display", "block");
+		   errorPresent = true;
+		}
+		else
+		{
+			$("#errorradio").css("display", "none");
+			errorPresent = false;
+		}
+
+	   
+    });
+
+
+       
+
+        $(".source").hover(function(){
+
+	       var atLeastOneIsChecked = $('input[name="source"]:checked').length > 0;
+	       if(!atLeastOneIsChecked){
+	       		$("#errorCheckbox").css("display", "block");
+				errorPresent = true;
+	       }
+	       else
+	       {
+	       		$("#errorCheckbox").css("display", "none");
+				errorPresent = false;
+	       }
+
+		
+        });
+
+
+
+        $("#submit").click(function() {
+	   	
+	    if (errorPresent) {
+	         alert("Please fix the errors before submitting the form");
+	         return false
+	    }
+	    
+
+		});
+
+
+
+    });
+
+  </script>
+  
+ </head>
+ <body>
+ <div id="container">
+	 
+	 <main>
+	 <h2>Feeback</h2>
+	 <h3>Love something? Hate something? Let us know!</h3>
+		 Note : Fields marked with an asterisk(*) are mandatory
+		 <br><br>
+		 <form method="post" novalidate id="form1">
+			<label>Title*:</label>
+			<input type="radio" name="title" id="miss" value="miss" class="title" required/>Miss
+			<input type="radio" name="title" id="mr" value="mr"  class="title"  required/>Mr.
+			<input type="radio" name="title" id="mrs" value="mrs" class="title"  required/>Mrs.
+			<div id= "errorradio" style="display:none; color:red;">Please check atleast one title</div>
+			<br><br>
+			<label for="firstName">First Name*:</label>
+			<input type="text" name="firstName" id="firstName" placeholder="First Name" required="required" />	
+			<div id= "errorFname" style="display:none; color:red;">Please enter a valid First name</div>
+			<br><br>
+			
+
+			<label for="lastName">Last Name*:</label>
+			<input type="text" name="lastName" id="lastName" placeholder="Last Name"  required="required" />
+			<div id= "errorLname" style="display:none; color:red;">Please enter a valid Last name</div>
+			<br><br>
+			
+
+			<label for="emailId">Email Id*:</label>
+			<input type="text" name="emailId" id="emailId" placeholder="yourname@domain.com" required="required" />
+			<div id= "errorEmail" style="display:none; color:red;">Please enter a valid Email address</div>
+			<br><br>
+			
+
+			<label for="phoneNumber">Phone Number*:</label>
+			<input type="text" name="phoneNumber" id="phoneNumber" placeholder="xxx-xxx-xxxx" required="required"  />
+			<div id= "errorphone" style="display:none; color:red;">Please enter a valid phone number </div>
+			<br><br>
+			
+            <label for="zipcode">ZipCode*:</label>
+			<input type="text" name="zipcode" id="zipcode" placeholder="xxxxxx" required="required"  />
+			<div id= "errorZipcode" style="display:none; color:red;">Please enter a valid Zip code</div>
+			<br><br>
+             
+            <label for="checkbox">How did you hear*:</label>
+			<input type='checkbox' name="source" value="facebook" class="source" /> Facebook
+            <input type='checkbox' name="source" value="google" class="source" /> Google
+            <input type='checkbox' name="source" value="yelp" class="source" /> Yelp 
+            <div id= "errorCheckbox" style="display:none; color:red;">Please check atleast one checkbox</div>
+			<br><br> 
+             
+			<label for="comments">Comments*:</label>
+			<textarea name="text" id="comments" placeholder="Your comments" rows="5" cols="25"></textarea>
+			<div id="charNum"></div>
+			<br><br>
+			<input type="Submit" id="submit">
+			<input type="Reset">
+			<br><br>
+		 </form>
+	 </main>
+ </div>
+
+
+ </body>
+</html>

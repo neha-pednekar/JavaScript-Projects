@@ -1,0 +1,5 @@
+The following bonus tasks are implemented in the 7th Chapter. Required Images are also added in the Chapter 7 folder.
+
+1. Image Gallery
+2. Image Maps
+3. Image Sprites

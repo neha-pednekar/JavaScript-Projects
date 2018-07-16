@@ -1,0 +1,12 @@
+Supplier Directory........arraylist
+Supplier ...............Product Catalog
+Manage a supplier db (add, update, remove)
+Manage product catalog(add, update, remove)
+
+master travel schedule ......array of all flight scdule
+each airliner........flight schedule
+
+eg...american......one
+het.....another
+
+
